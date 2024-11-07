@@ -30,7 +30,7 @@ async def main():
 Функция main() начинает "опрос" сервера Telegram (polling) для получения новых сообщений и команд.
 Функция is_number для проверки, является ли ввод числом
 
-python
+Функция проверки
 def is_number(s):
     try:
         float(s)
