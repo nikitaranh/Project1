@@ -6,7 +6,7 @@
 Основные компоненты кода
 Импорт модулей и настройка бота
 
-python
+
 import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
@@ -24,7 +24,7 @@ bot — экземпляр бота с токеном, который предо
 dp — Dispatcher используется для обработки входящих сообщений и маршрутизации команд, чтобы бот реагировал на них.
 Функция main() для запуска бота
 
-python
+
 async def main():
     await dp.start_polling(bot)
 Функция main() начинает "опрос" сервера Telegram (polling) для получения новых сообщений и команд.
@@ -41,7 +41,7 @@ def is_number(s):
 
 Обработчик команды /start
 
-python
+Обработка
 @dp.message(Command('start'))
 async def start1(message: Message):
     await message.answer('Здравствуйте! Введите число для получения списка простых чисел:')
@@ -49,7 +49,7 @@ async def start1(message: Message):
 
 Обработчик сообщений от пользователя
 
-python
+Сообщение
 @dp.message()
 async def echo_handler(message: Message):
     if is_number(message.text):
