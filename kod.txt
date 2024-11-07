@@ -1,1 +1,57 @@
-TESTFILE
+import asyncio
+from aiogram import Bot, Dispatcher
+from aiogram.filters import Command
+from aiogram.types import Message
+
+bot = Bot(token='8166318669:AAFLayQZfpr-c1n34I2i6J6OEaL--WpBfqg')
+dp = Dispatcher()
+
+
+async def main():
+    await dp.start_polling(bot)
+
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+@dp.message(Command('start'))
+async def start1(message: Message):
+    await message.answer('Здравствуйте! Введите число для получения списка простых чисел:')
+
+
+@dp.message()
+async def echo_handler(message: Message):
+    if is_number(message.text):
+        llist = []
+        i = 0
+        chisl = 2
+        limit = int(message.text)
+        while i < limit:
+            if is_prime(chisl):
+                llist.append(chisl)
+                i += 1
+            chisl += 1
+        await message.answer(", ".join(map(str, llist)))
+    else:
+        await message.answer("Введите число.")
+
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+
+if __name__ == '__main__':
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print('Exit')
